@@ -16,6 +16,8 @@ export interface ImageProps {
   alt?: string
   stub?: string | boolean | ReactNode
   objectFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down'
+  maxWidth?: Value
+  maxHeight?: Value
   onLoad?: () => void
 }
 
@@ -31,6 +33,8 @@ export const Image: FC<ImageProps> = ({
   viewedDelay = 1000,
   objectFit,
   onLoad,
+  maxWidth,
+  maxHeight,
 }) =>
   stub ? (
     <ImageControl
@@ -48,8 +52,8 @@ export const Image: FC<ImageProps> = ({
             key={src}
             width={width}
             height={height}
-            maxWidth={1}
-            maxHeight={1}
+            maxWidth={maxWidth ?? 1}
+            maxHeight={maxHeight ?? 1}
             src={renderProps.src}
             srcSet={renderProps.srcSet}
             sizes={sizes}
@@ -118,6 +122,8 @@ export const Image: FC<ImageProps> = ({
       alt={alt}
       objectFit={objectFit}
       onLoad={onLoad}
+      maxWidth={maxWidth}
+      maxHeight={maxHeight}
     />
   )
 
